@@ -14,10 +14,7 @@
       confirm: false
 
   pre_tasks:
-    # - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
-    #   community.crypto.openssh_keypair:
-    #     path: /home/jim/.ssh/id_ed25519
-    #     passphrase: "{{ ssh_pass }}"
+
 
 
     - import_tasks: tasks/createvars.yml
@@ -55,7 +52,7 @@
     - role: ohmyzsh
       vars:
         ohmyzsh_users:
-          - user: jim
+          - user: "{{ lookup('env', 'USER') }}"
             theme: powerlevel10k/powerlevel10k
             ssh_ids: []
             state: present

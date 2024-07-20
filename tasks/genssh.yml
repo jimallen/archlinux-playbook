@@ -1,15 +1,21 @@
 - name: Create a directory if it does not exist
   ansible.builtin.file:
-    path: /home/jim/.ssh
+    path: "/home/{{ lookup('env', 'USER') }}/.ssh"
     state: directory
 
 - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
   community.crypto.openssh_keypair:
-    path: /home/jim/.ssh/id_ed25519
+    path: "/home/{{ lookup('env', 'USER') }}/.ssh/id_ed25519"
+    type: ed25519 
     passphrase:  "{{ ssh_pass }}"
     force: true
+    owner: "{{ lookup('env', 'USER') }}"
+    comment: jimallen@gmail.com
+
+
+
 
 - name: Evaluating the authentication agent & adding the key...
   shell: |
     eval "$(ssh-agent)"
-    ssh-add /home/jim/.ssh/id_ed25519
+    ssh-add /home/{{ lookup('env', 'USER') }}/.ssh/id_ed25519
