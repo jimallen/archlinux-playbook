@@ -25,6 +25,7 @@ base_packages:
   - wget
   - reflector
   - zsh
+  - gtk4
 
 xorg_packages:
   - xorg

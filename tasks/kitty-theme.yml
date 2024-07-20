@@ -1,0 +1,25 @@
+# THEME=https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/3024_Day.conf
+# wget "$THEME" -P ~/.config/kitty/kitty-themes/themes
+
+# - name: Remove file (delete file)
+#   ansible.builtin.file:
+#     path: /home/jim/.config/kitty/kitty.conf
+#     state: absent
+
+- name: create kitty.conf
+  copy:
+    content: |
+      font_family      MesloLGS
+      font_size 12.0
+      background_opacity 0.9
+    dest: "/home/{{ lookup('env', 'USER') }}/.config/kitty/kitty.conf"
+    force: true
+
+
+
+- name: Install the kitty theme
+  shell: |
+    THEME=https://raw.githubusercontent.com/dexpota/kitty-themes/master/themes/Apprentice.conf
+    wget "$THEME" -P /home/{{ lookup('env', 'USER') }}/.config/kitty/kitty-themes/themes
+    ln -s ./kitty-themes/themes/Apprentice.conf /home/{{ lookup('env', 'USER') }}/.config/kitty/theme.conf
+    echo "include ./theme.conf" >> /home/{{ lookup('env', 'USER') }}/.config/kitty/kitty.conf

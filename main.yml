@@ -17,6 +17,8 @@
 
 
 
+    - import_tasks: tasks/kitty-theme.yml
+
     - import_tasks: tasks/createvars.yml
     - import_tasks: tasks/pretasks.yml 
     - import_tasks: tasks/genssh.yml
