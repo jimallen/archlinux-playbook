@@ -9,4 +9,12 @@
     dest: /home/jim/.ansible/collections/ansible_collections/drew1kun/shellfreak/roles/ohmyzsh/vars/archlinux.yml
     force: true
 
- 
+
+- name: create var file of terminus
+  copy:
+    content: |
+      ---
+      terminus_powerline_fonts_dir: '/usr/local/share/fonts'
+
+    dest: /home/jim/.ansible/collections/ansible_collections/drew1kun/fancyfonts/roles/terminus_powerline/vars/Archlinux.yml
+    force: true

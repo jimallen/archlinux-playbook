@@ -7,9 +7,25 @@
   - drew1kun.fancyfonts
   - drew1kun.shellfreak
 
+  vars_prompt:
+    - name: ssh_pass
+      prompt: What is your ssh passphrase?
+      private: false
+      confirm: false
+
   pre_tasks:
-   - import_tasks: tasks/createvars.yml 
-   - import_tasks: tasks/pretasks.yml
+    # - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
+    #   community.crypto.openssh_keypair:
+    #     path: /home/jim/.ssh/id_ed25519
+    #     passphrase: "{{ ssh_pass }}"
+
+
+    - import_tasks: tasks/createvars.yml
+    - import_tasks: tasks/pretasks.yml 
+    - import_tasks: tasks/genssh.yml
+
+
+  
    
 
   vars_files:

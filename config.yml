@@ -74,7 +74,6 @@ other_packages:
   - stow
   - firefox
   - google-chrome
-  - obsidian
   - spotify
   - spotify-adblock-git
   - alacritty
@@ -97,6 +96,8 @@ other_packages:
   - xclip
   - oh-my-zsh-git 
   - zsh-theme-powerlevel10k
+  - signal-desktop
+  - docker
 
 services_list:
   - sshd

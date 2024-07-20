@@ -1,10 +1,5 @@
 ---
-- name: Install pretask packages
-  become: true
-  kewlfft.aur.aur:
-    name: "{{ dev_packages }}"
-    use: yay
+- name: Install Ruby
+  community.general.pacman:
+    name: ruby
     state: present
-  changed_when: false
-
-  
