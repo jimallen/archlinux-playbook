@@ -1,5 +1,5 @@
 ---
-- name: Install Dev packages
+- name: Install pretask packages
   become: true
   kewlfft.aur.aur:
     name: "{{ dev_packages }}"

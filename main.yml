@@ -1,6 +1,16 @@
 ---
 - name: Configure host.
   hosts: all
+  become: true
+  connection: local
+  collections:
+  - drew1kun.fancyfonts
+  - drew1kun.shellfreak
+
+  pre_tasks:
+   - import_tasks: tasks/createvars.yml 
+   - import_tasks: tasks/pretasks.yml
+   
 
   vars_files:
     - default.config.yml
@@ -19,3 +29,23 @@
     - import_tasks: tasks/other-services.yml
     - import_tasks: tasks/dev-packages.yml
     - import_tasks: tasks/upgrade.yml
+    - import_tasks: tasks/zsh.yml
+
+
+  roles:
+    - role: terminus_powerline
+      vars:
+        terminus_powerline_fonts_dir: '/usr/local/share/fonts'
+    - role: ohmyzsh
+      vars:
+        ohmyzsh_users:
+          - user: jim
+            theme: powerlevel10k/powerlevel10k
+            ssh_ids: []
+            state: present
+            colorls: true
+
+
+
+
+       

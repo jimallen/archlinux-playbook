@@ -2,3 +2,7 @@
 collections:
   - community.general
   - kewlfft.aur # For AUR
+  - name: drew1kun.shellfreak
+    version: '*'
+    type: galaxy
+  - name: drew1kun.fancyfonts

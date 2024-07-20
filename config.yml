@@ -3,6 +3,10 @@ update: true
 swapfile_path: /swapfile
 swapfile_size: 8G
 
+
+pre_packages:
+  - ruby
+
 base_packages:
   - base
   - base-devel
@@ -20,6 +24,7 @@ base_packages:
   - git
   - wget
   - reflector
+  - zsh
 
 xorg_packages:
   - xorg
@@ -50,6 +55,7 @@ font_packages:
   - ttf-dejavu
   - ttf-roboto
   - adobe-source-han-sans-otc-fonts # for CJK
+  - ttf-meslo-nerd
 
 gnome_packages:
   - gnome
@@ -89,6 +95,8 @@ other_packages:
   - p7zip
   - radeontop
   - xclip
+  - oh-my-zsh-git 
+  - zsh-theme-powerlevel10k
 
 services_list:
   - sshd
@@ -101,7 +109,5 @@ dev_packages:
   - python-pip
   - nodejs
   - npm
-  - rust
-  - jre
-  - jdk
   - go
+  - kitty

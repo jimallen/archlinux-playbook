@@ -1,0 +1,12 @@
+- name: create var file of ohmyzsh
+  copy:
+    content: |
+      ---
+      ohmyzsh_root_dir: '/root'
+      ohmyzsh_home_dir: '/home/'
+      ohmyzsh_zprofile_dir: '/etc/zsh/'
+
+    dest: /home/jim/.ansible/collections/ansible_collections/drew1kun/shellfreak/roles/ohmyzsh/vars/archlinux.yml
+    force: true
+
+ 
