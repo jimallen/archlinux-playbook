@@ -1,3 +1,8 @@
+- name: Check is ssh key exists
+  stat:
+    path: "/home/{{ lookup('env', 'USER') }}/.ssh/id_ed25519.pub"
+  register: key_exists
+
 - name: Create a directory if it does not exist
   ansible.builtin.file:
     path: "/home/{{ lookup('env', 'USER') }}/.ssh"
@@ -11,6 +16,7 @@
     force: true
     owner: "{{ lookup('env', 'USER') }}"
     comment: jimallen@gmail.com
+  when: not key_exists.stat.exists
 
 
 
@@ -19,3 +25,4 @@
   shell: |
     eval "$(ssh-agent)"
     ssh-add /home/{{ lookup('env', 'USER') }}/.ssh/id_ed25519
+  when: not key_exists.stat.exists

@@ -21,7 +21,6 @@
 
     - import_tasks: tasks/createvars.yml
     - import_tasks: tasks/pretasks.yml 
-    - import_tasks: tasks/genssh.yml
 
 
   
@@ -45,6 +44,8 @@
     - import_tasks: tasks/dev-packages.yml
     - import_tasks: tasks/upgrade.yml
     - import_tasks: tasks/zsh.yml
+    - import_tasks: tasks/genssh.yml
+
 
 
   roles:
