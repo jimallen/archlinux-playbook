@@ -6,6 +6,11 @@
 #     path: /home/jim/.config/kitty/kitty.conf
 #     state: absent
 
+- name: Create a kitty directory if it does not exist
+  ansible.builtin.file:
+    path: "/home/{{ lookup('env', 'USER') }}/.config/"
+    state: directory
+
 - name: create kitty.conf
   copy:
     content: |
