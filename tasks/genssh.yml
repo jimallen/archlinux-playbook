@@ -4,11 +4,13 @@
   register: key_exists
 
 - name: Create a directory if it does not exist
+  become_user: "{{ lookup('env', 'USER') }}"
   ansible.builtin.file:
     path: "/home/{{ lookup('env', 'USER') }}/.ssh"
     state: directory
 
 - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
+  become_user: "{{ lookup('env', 'USER') }}"
   community.crypto.openssh_keypair:
     path: "/home/{{ lookup('env', 'USER') }}/.ssh/id_ed25519"
     type: ed25519 
@@ -20,9 +22,8 @@
 
 
 
-
 - name: Evaluating the authentication agent & adding the key...
   shell: |
-    eval "$(ssh-agent)"
+    eval "$(ssh-agent -s)"
     ssh-add /home/{{ lookup('env', 'USER') }}/.ssh/id_ed25519
   when: not key_exists.stat.exists
