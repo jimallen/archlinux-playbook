@@ -6,3 +6,19 @@
   become: true
   shell: "chsh -s $(which zsh) {{ current_user.stdout }}"
   changed_when: false
+
+- name: copy aliases.local
+  ansible.builtin.copy:
+    src: ../assets/aliases.local
+    dest: /home/jima/.zsh/aliases.local
+    owner: jima
+    group: jima
+    mode: '0644'
+
+
+- name: create file and add line
+  lineinfile:
+    path: /home/jima/.zshrc
+    line: "source {{playbook_dir}}/assets/plugins.zsh" 
+    state: present
+    

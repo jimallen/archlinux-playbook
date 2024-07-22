@@ -29,6 +29,8 @@ base_packages:
   - zsh
   - gtk4
   - wmctrl
+  - eza
+  - bat
 
 xorg_packages:
   - xorg
@@ -76,6 +78,7 @@ other_packages:
   - mpv-mpris
   - aria2
   - yay
+  - paru
   - pass
   - stow
   - firefox
