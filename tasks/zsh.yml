@@ -1,24 +1,24 @@
-- name: Register current user (workaround to change default shell)
-  shell: whoami
-  register: current_user
+# - name: Register current user (workaround to change default shell)
+#   shell: whoami
+#   register: current_user
 
 - name: Change default shell to zsh
   become: true
-  shell: "chsh -s $(which zsh) {{ current_user.stdout }}"
+  shell: "chsh -s $(which zsh) {{ lookup('env', 'USER') }}"
   changed_when: false
 
 - name: copy aliases.local
   ansible.builtin.copy:
     src: ../assets/aliases.local
-    dest: /home/jima/.zsh/aliases.local
-    owner: jima
-    group: jima
+    dest: "/home/{{ lookup('env', 'USER') }}/.zsh/aliases.local"
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
     mode: '0644'
 
 
 - name: create file and add line
   lineinfile:
-    path: /home/jima/.zshrc
+    path: "/home/{{ lookup('env', 'USER') }}/.zshrc"
     line: "source {{playbook_dir}}/assets/plugins.zsh" 
     state: present
     

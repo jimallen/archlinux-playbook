@@ -25,6 +25,7 @@
 
 
 - name: "create /home/{{ lookup('env', 'USER') }}/.config/ulauncher/settings.json"
+  become_user: "{{ lookup('env', 'USER') }}"
   copy:
     content: |
       {
@@ -32,13 +33,13 @@
         "clear-previous-query": true,
         "disable-desktop-filters": false,
         "grab-mouse-pointer": false,
-        "hotkey-show-app": "null",
+        "hotkey-show-app": "<Shift><Super>space",
         "render-on-screen": "mouse-pointer-monitor",
         "show-indicator-icon": true,
         "show-recent-apps": "0",
         "terminal-command": "",
-        "theme-name": "dark"
-      }%    
+        "theme-name": "Elementary Dark"
+      }
             
     dest: "/home/{{ lookup('env', 'USER') }}/.config/ulauncher/settings.json"
     force: true

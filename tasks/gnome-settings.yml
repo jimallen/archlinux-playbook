@@ -13,7 +13,7 @@
    
 - name: Set GNOME Wallpaper scale
   become_user: "{{ lookup('env', 'USER') }}"
-  dconf: key="/org/gnome/desktop/background/picture-options" value="'scaled'"
+  dconf: key="/org/gnome/desktop/background/picture-options" value="'stretched'"
 
 
 
@@ -25,21 +25,25 @@
     #########
 
 - name: never blank screen
+  become_user: "{{ lookup('env', 'USER') }}"
   dconf:
     key: "/org/gnome/desktop/session/idle-delay"
     value: "uint32 0"
 
 - name: inactive timeout
+  become_user: "{{ lookup('env', 'USER') }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type"
     value: "'nothing'"
 
 - name: inactive timeout on battery
+  become_user: "{{ lookup('env', 'USER') }}"
   dconf:
     key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-battery-type"
     value: "'nothing'"
 
 - name: show battery percentage
+  become_user: "{{ lookup('env', 'USER') }}"
   dconf:
     key: "/org/gnome/desktop/interface/show-battery-percentage"
     value: "true"
@@ -60,16 +64,19 @@
     #################
 
 - name: automatic timezone
+  become_user: "{{ lookup('env', 'USER') }}"
   dconf:
     key: "/org/gnome/desktop/datetime/automatic-timezone"
     value: "true"
 
 - name: clock show date
+  become_user: "{{ lookup('env', 'USER') }}"
   dconf:
     key: "/org/gnome/desktop/interface/clock-show-date"
     value: "true"
 
 - name: clock format
+  become_user: "{{ lookup('env', 'USER') }}"
   dconf:
     key: "/org/gnome/desktop/interface/clock-format"
     value: "'12h'"
@@ -82,6 +89,7 @@
 
 
 - name: disable hot corner
+  become_user: "{{ lookup('env', 'USER') }}"
   dconf:
     key: "/org/gnome/desktop/interface/enable-hot-corners"
     value: "false"

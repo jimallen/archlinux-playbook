@@ -8,6 +8,8 @@ swapfile_size: 8G
 
 pre_packages:
   - ruby
+  - unzip
+
 
 base_packages:
   - base
