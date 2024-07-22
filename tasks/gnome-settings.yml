@@ -1,0 +1,116 @@
+- name: Set GNOME to prefer dark
+  become_user: "{{ lookup('env', 'USER') }}"
+  dconf: key="/org/gnome/desktop/interface/color-scheme" value="'prefer-dark'"
+
+
+
+- name: "'Set GNOME Wallpaper to file:///{{playbook_dir}}/assets/wallpapers/River.jpg'"
+  become_user: "{{ lookup('env', 'USER') }}"
+  dconf: key="/org/gnome/desktop/background/picture-uri-dark" value="'file:///{{playbook_dir}}/assets/wallpapers/River.jpg'"
+
+
+   
+   
+- name: Set GNOME Wallpaper scale
+  become_user: "{{ lookup('env', 'USER') }}"
+  dconf: key="/org/gnome/desktop/background/picture-options" value="'scaled'"
+
+
+
+
+
+
+      #########
+    # power #
+    #########
+
+- name: never blank screen
+  dconf:
+    key: "/org/gnome/desktop/session/idle-delay"
+    value: "uint32 0"
+
+- name: inactive timeout
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type"
+    value: "'nothing'"
+
+- name: inactive timeout on battery
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-battery-type"
+    value: "'nothing'"
+
+- name: show battery percentage
+  dconf:
+    key: "/org/gnome/desktop/interface/show-battery-percentage"
+    value: "true"
+
+- name: ignore lid close
+  become: true
+  lineinfile:
+    path: /etc/systemd/logind.conf
+    regexp: '^HandleLidSwitch='
+    insertafter: '^#HandleLidSwitch='
+    line: 'HandleLidSwitch=ignore'
+
+
+
+
+    #################
+    # date and time #
+    #################
+
+- name: automatic timezone
+  dconf:
+    key: "/org/gnome/desktop/datetime/automatic-timezone"
+    value: "true"
+
+- name: clock show date
+  dconf:
+    key: "/org/gnome/desktop/interface/clock-show-date"
+    value: "true"
+
+- name: clock format
+  dconf:
+    key: "/org/gnome/desktop/interface/clock-format"
+    value: "'12h'"
+
+
+
+    ############
+    # behavior #
+    ############
+
+
+- name: disable hot corner
+  dconf:
+    key: "/org/gnome/desktop/interface/enable-hot-corners"
+    value: "false"
+
+
+
+
+    ###################
+    # profile picture #
+    ###################
+
+- name: Copy profile picture
+  ansible.builtin.copy:
+    src: "../assets/avatar.png"
+    dest: "/var/lib/AccountsService/icons/{{ lookup('env', 'USER') }}"
+    owner: "{{ lookup('env', 'USER') }}"
+    group: "{{ lookup('env', 'USER') }}"
+    mode: '0644'
+
+
+
+- name: set profile picture
+  copy:
+    content: |
+      [User]
+      Session=
+      Icon=/var/lib/AccountsService/icons/{{ lookup('env', 'USER') }}
+      SystemAccount=false
+    dest: "/var/lib/AccountsService/users/{{ lookup('env', 'USER') }}"
+    force: true
+
+

@@ -1,0 +1,11 @@
+- name: config tactile cols
+  become_user: "{{ lookup('env', 'USER') }}"
+  dconf:
+    key: "/org/gnome/shell/extensions/tactile/col-1"
+    value: "0"
+
+- name: config tactile row
+  become_user: "{{ lookup('env', 'USER') }}"
+  dconf:
+    key: "/org/gnome/shell/extensions/tactile/row-1"
+    value: "0"

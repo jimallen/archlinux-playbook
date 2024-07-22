@@ -1,0 +1,44 @@
+# git clone https://aur.archlinux.org/ulauncher.git && cd ulauncher && makepkg -is
+
+- name: enable ulauncher on start
+  become_user: "{{ lookup('env', 'USER') }}"
+  shell: |
+   systemctl --user enable --now ulauncher
+
+
+
+- name: ulauncher shortcut name
+  become_user: "{{ lookup('env', 'USER') }}"
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
+    value: "'ulauncher-toggle'"
+- name: ulauncher shortcut command
+  become_user: "{{ lookup('env', 'USER') }}"
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
+    value: "'ulauncher-toggle'"
+- name: ulauncher shortcut binding
+  become_user: "{{ lookup('env', 'USER') }}"
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
+    value: "'<Super>space'"
+
+
+- name: "create /home/{{ lookup('env', 'USER') }}/.config/ulauncher/settings.json"
+  copy:
+    content: |
+      {
+        "blacklisted-desktop-dirs": "/usr/share/locale:/usr/share/app-install:/usr/share/kservices5:/usr/share/fk5:/usr/share/kservicetypes5:/usr/share/applications/screensavers:/usr/share/kde4:/usr/share/mimelnk",
+        "clear-previous-query": true,
+        "disable-desktop-filters": false,
+        "grab-mouse-pointer": false,
+        "hotkey-show-app": "null",
+        "render-on-screen": "mouse-pointer-monitor",
+        "show-indicator-icon": true,
+        "show-recent-apps": "0",
+        "terminal-command": "",
+        "theme-name": "dark"
+      }%    
+            
+    dest: "/home/{{ lookup('env', 'USER') }}/.config/ulauncher/settings.json"
+    force: true

@@ -4,6 +4,8 @@ swapfile_path: /swapfile
 swapfile_size: 8G
 
 
+
+
 pre_packages:
   - ruby
 
@@ -26,6 +28,7 @@ base_packages:
   - reflector
   - zsh
   - gtk4
+  - wmctrl
 
 xorg_packages:
   - xorg
@@ -63,6 +66,8 @@ gnome_packages:
   - gnome-tweaks
   - gnome-shell-extensions
   - gdm
+  - extension-manager
+  - ulauncher
 
 other_packages:
   - linux-headers

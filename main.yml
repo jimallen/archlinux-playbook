@@ -15,19 +15,18 @@
 
   pre_tasks:
 
-
+    - import_tasks: tasks/gnome-settings.yml
     - import_tasks: tasks/createvars.yml
     - import_tasks: tasks/pretasks.yml 
 
 
-  
-   
 
   vars_files:
     - default.config.yml
     - config.yml
 
   tasks:
+
     - import_tasks: tasks/update.yml
     - import_tasks: tasks/base-packages.yml
     - import_tasks: tasks/swap.yml
@@ -44,9 +43,16 @@
     - import_tasks: tasks/genssh.yml
     - import_tasks: tasks/kitty-theme.yml
     - import_tasks: tasks/git-config.yml
+    - import_tasks: tasks/tactile.yml
+    - import_tasks: tasks/ulauncher.yml
+
 
 
   roles:
+    - role: luizgavalda.gnome_extensions
+      vars:
+        gnome_extension_ids:
+          - 4548
     - role: terminus_powerline
       vars:
         terminus_powerline_fonts_dir: '/usr/local/share/fonts'

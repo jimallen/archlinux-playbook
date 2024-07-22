@@ -6,3 +6,5 @@ collections:
     version: '*'
     type: galaxy
   - name: drew1kun.fancyfonts
+roles:
+  - name: luizgavalda.gnome_extensions

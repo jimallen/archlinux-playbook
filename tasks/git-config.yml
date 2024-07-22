@@ -1,0 +1,12 @@
+- name: "create /home/{{ lookup('env', 'USER') }}/.gitconfig"
+  copy:
+    content: |
+      [user]
+              email = jimallen@gmail.com
+              name = Jim Allen
+            
+    dest: "/home/{{ lookup('env', 'USER') }}/.gitconfig"
+    force: true
+
+
+
