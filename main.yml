@@ -15,7 +15,6 @@
 
   pre_tasks:
 
-    - import_tasks: tasks/gnome-settings.yml
     - import_tasks: tasks/createvars.yml
     - import_tasks: tasks/pretasks.yml 
 
@@ -45,6 +44,8 @@
     - import_tasks: tasks/git-config.yml
     - import_tasks: tasks/tactile.yml
     - import_tasks: tasks/ulauncher.yml
+    - import_tasks: tasks/gnome-settings.yml
+
 
 
 
