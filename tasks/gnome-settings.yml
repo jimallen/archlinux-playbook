@@ -122,3 +122,15 @@
     force: true
 
 
+- name: show workspace 1
+  dconf:
+    key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-1"
+    value: "'<Super>1'"
+
+  
+- name: show workspace 2
+  become_user: "{{ lookup('env', 'USER') }}"
+  dconf:
+    key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-2"
+    value: "'<Super>2'"
+

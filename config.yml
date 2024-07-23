@@ -109,6 +109,7 @@ other_packages:
   - zsh-theme-powerlevel10k
   - signal-desktop
   - docker
+  - slack-desktop
 
 services_list:
   - sshd
