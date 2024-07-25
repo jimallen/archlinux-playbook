@@ -50,10 +50,10 @@
 
 
   roles:
-    - role: luizgavalda.gnome_extensions
-      vars:
-        gnome_extension_ids:
-          - 4548
+    # - role: luizgavalda.gnome_extensions
+    #   vars:
+    #     gnome_extension_ids:
+    #       - 4548
     - role: terminus_powerline
       vars:
         terminus_powerline_fonts_dir: '/usr/local/share/fonts'

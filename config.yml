@@ -110,6 +110,8 @@ other_packages:
   - signal-desktop
   - docker
   - slack-desktop
+  - vivaldi
+  - whatsapp-for-linux
 
 services_list:
   - sshd
